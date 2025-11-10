@@ -111,6 +111,9 @@ build-npm:
 	      "version")"; \
 	npm \
 	  install; \
+	cp \
+	  "node_modules/crash-bash/crash-bash/fs-worker" \
+	  "."
 	webpack \
 	  --mode \
 	    "production" \

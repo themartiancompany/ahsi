@@ -14,6 +14,7 @@
     "package.json",
     "ahsi.js",
     "ahsi",
+    "fs-worker",
     "index.html",
     "webpack.config.js"
   ],
@@ -41,7 +42,7 @@
     "webpack-cli": "^6.0.1"
   },
   "dependencies": {
-    "crash-js": "^0.1.23",
+    "crash-js": "^0.1.24",
     "happy-opfs": "npm:@themartiancompany/happy-opfs@^1.8.8"
   },
   "type": "commonjs",
