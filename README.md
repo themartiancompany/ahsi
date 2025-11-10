@@ -32,6 +32,22 @@ libraries together to write a program
 which runs both in node.js and
 in a browser console.
 
+```bash
+# In the terminal
+ahsi \
+  -p \
+    "node" \
+  "hello" \
+  "mars"
+
+# In the browser
+ahsi \
+  -p \
+    "browser" \
+  "hello" \
+  "venus"
+```
+
 That's significant because it can be noted programs
 written using either one of the Crash libraries
 are quite similar in their structure and
@@ -49,9 +65,9 @@ system-wide installed programs reliably with node.
 
 Upon installation manual can be accessed with
 
-```bash
-man \
-  "ahsi"
+```console
+$ man \
+    "ahsi"
 ```
 
 ## How does it work
@@ -75,9 +91,9 @@ So for example on
   http://localhost:3000)
 with Serve:
 
-```bash
-serve \
-  "$(pwd)"
+```console
+$ serve \
+    "$(pwd)"
 ```
 
 This library is being used by most of
@@ -92,19 +108,19 @@ The program in this source repo
 can be installed from source without any
 extra dependencies using GNU Make
 
-```bash
-make \
-  all
-make \
-  install-npm
+```console
+$ make \
+    all
+# make \
+    install-npm
 ```
 
 If you do not wish to install browser
 compatibility you can simply run instead
 
-```bash
-make \
-  install
+```console
+# make \
+    install
 ```
 
 The node module can also be installed
