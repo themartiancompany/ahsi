@@ -57,15 +57,17 @@ function
 function
   _ahsi() {
   let
-    _sync_agent;
+    _worker;
   // _sync_agent =
   //   _happy_opfs.startSyncAgent;
+  _worker =
+    _fs_worker_new();
   console.log(
-    _sync_agent);
+    _worker);
   _file_write(
     "test",
     "content");
-  _sync_agent();
+  // _sync_agent();
   _msg_info(
     "ciao");
 }
