@@ -2,7 +2,7 @@
   "name":
     "ahsi",
   "version":
-    "0.0.7",
+    "0.0.8",
   "description":
     "Crash Javascript library example program.",
   "funding": {
@@ -63,7 +63,7 @@
   },
   "dependencies": {
     "crash-js":
-      "^0.1.39"
+      "^0.1.43"
   },
   "type":
     "commonjs",
