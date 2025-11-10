@@ -145,8 +145,11 @@ install-npm:
 	ln \
 	  -s \
 	  "$(NODE_DIR)" \
-	  "$(LIB_DIR)";
-
+	  "$(LIB_DIR)" || \
+	true
+	$(_INSTALL_EXE) \
+	  "$(_PROJECT)/$(_PROJECT)" \
+	  "$(BIN_DIR)/$(_PROJECT)"
 
 publish-npm:
 
