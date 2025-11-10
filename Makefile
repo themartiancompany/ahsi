@@ -131,7 +131,7 @@ install-npm:
 	_version="$$( \
 	  npm \
 	    view \
-	      "$$(pwd)" \
+	      "$$(pwd)/ahsi/node" \
 	      "version")"; \
 	npm \
 	  install \
