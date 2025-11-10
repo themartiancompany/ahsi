@@ -63,9 +63,7 @@
   },
   "dependencies": {
     "crash-js":
-      "^0.1.39",
-    "happy-opfs":
-      "npm:@themartiancompany/happy-opfs@^1.8.8"
+      "^0.1.39"
   },
   "type":
     "commonjs",
