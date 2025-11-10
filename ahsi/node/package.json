@@ -74,7 +74,7 @@
   "scripts": {
     "build":
       "cd ../.. && make build-npm && ahsi/node",
-    "publish":
+    "publish-pnm":
       "npm run build && npm publish --access public",
     "start":
       "serve -c 'serve.json'",
