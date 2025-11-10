@@ -109,6 +109,8 @@ build-npm:
 	  "build"; \
 	cd \
 	  "build"; \
+	npm \
+	  install; \
 	webpack \
 	  --mode \
 	    "production" \
