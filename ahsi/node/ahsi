@@ -29,8 +29,6 @@ const
   _happy_opfs =
   require(
     'happy-opfs');
-_agent_connect =
-  _happy_opfs.connectSyncAgent;
 _cmdline_check =
   _libcrash._cmdline_check;
 _error_display =
@@ -66,30 +64,15 @@ async function
     _happy_opfs.mkdirSync;
   _ls =
     _happy_opfs.readDirSync;
-  _worker =
-    _fs_worker_new(
+  await _fs_worker_start(
       "fs-worker.js");
-  console.log(
-    _worker);
-  _connect_opts = {
-    worker:
-      _worker,
-    // SharedArrayBuffer size between
-    // main thread and worker
-    bufferLength:
-      10 * 1024 * 1024,
-    // max wait time at main thread per operation
-    opTimeout: 3000,
-  }
-  _mkdir(
-    "test_dir");
-  await _agent_connect(
-          _connect_opts);
   _mkdir(
     "/test_dir");
   _file_write(
     "/test_file",
     "content");
+  _ls(
+    "");
   // _sync_agent();
   _msg_info(
     "ciao");
