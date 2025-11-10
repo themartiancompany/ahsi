@@ -92,14 +92,20 @@ async function
     `Content of directory '/':`;
   _msg_info(
     _msg);
-  _ls(
-    "/");
+  _dir_content =
+    _ls(
+      "/");
+  _msg_info(
+    _dir_content);
   _msg =
     `Content of directory '${_dir}':`;
   _msg_info(
     _msg);
-  _ls(
-    _dir);
+  _dir_content =
+    _ls(
+      _dir);
+  _msg_info(
+    _dir_content);
 }
 
 function
