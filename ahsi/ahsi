@@ -107,6 +107,8 @@ _set_overrides() {
   fi
   if [[ ! -v "override_target_environment" ]]; then
     target_environment="node"
+  else
+    target_environment="${override_target_environment}"
   fi
 }
 
@@ -202,6 +204,7 @@ if (( ${#} < 1 )); then
   _msg=(
     "Message required."
   )
+  _set_overrides
   _msg_error \
     "${_msg[*]}" \
     0
