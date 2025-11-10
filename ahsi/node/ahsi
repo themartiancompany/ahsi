@@ -64,6 +64,8 @@ async function
     _agent;
   _mkdir =
     _happy_opfs.mkdirSync;
+  _ls =
+    _happy_opfs.readDirSync;
   _worker =
     _fs_worker_new(
       "fs-worker.js");
@@ -84,9 +86,9 @@ async function
   await _agent_connect(
           _connect_opts);
   _mkdir(
-    "test_dir");
+    "/test_dir");
   _file_write(
-    "test_file",
+    "/test_file",
     "content");
   // _sync_agent();
   _msg_info(

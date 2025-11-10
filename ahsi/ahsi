@@ -67,9 +67,9 @@ _cert_new() {
     -newkey
       "rsa:4096"
     -keyout
-      "key.pem"
+      "${_key_file}"
     -out
-      "cert.pem"
+      "${_cert_file}"
     -sha256
     -days
       3650
@@ -88,10 +88,15 @@ _cert_setup() {
     _cert_file
   _key_file="${_cache_dir}/key.pem"
   _cert_file="${_cache_dir}/cert.pem"
-  _cert_new \
-    "${_key_file}" \
-    "${_cert_file}"
+  if [[ ! -e "${_key_file}" ]] || \
+     [[ ! -e "${_cert_file}" ]]; then
+    _cert_new \
+      "${_key_file}" \
+      "${_cert_file}"
+  fi
   _serve_opts+=(
+    --ssl-key
+      "${_key_file}"
     --ssl-cert
       "${_cert_file}"
   )
@@ -124,6 +129,9 @@ _ahsi() {
   if [[ "${quiet}" == "n" ]]; then
     _node_run_opts+=(
       -v
+    )
+    _serve_opts+=(
+      --debug
     )
   fi
   _oldpwd="${PWD}"
