@@ -164,7 +164,7 @@ install-man:
 	$(_INSTALL_DIR) \
 	  "$(MAN_DIR)/man1"
 	rst2man \
-	  "man/lib$(_PROJECT).1.rst" \
+	  "man/$(_PROJECT).1.rst" \
 	  "$(MAN_DIR)/man1/$(_PROJECT).1"
 
 .PHONY: check build-man build-npm install install-doc install-man install-npm install-scripts shellcheck
