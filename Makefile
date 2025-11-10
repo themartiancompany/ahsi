@@ -92,11 +92,6 @@ build-npm:
 	rst2man \
 	  "man/$(_PROJECT).1.rst" \
 	  "build/$(_PROJECT).1"
-	_version="$$( \
-	  npm \
-	    view \
-	      "$$(pwd)/build" \
-	      "version")"; \
 	cp \
 	  -r \
 	  "README.md" \
@@ -109,6 +104,11 @@ build-npm:
 	  "build"; \
 	cd \
 	  "build"; \
+	_version="$$( \
+	  npm \
+	    view \
+	      "$$(pwd)" \
+	      "version")"; \
 	npm \
 	  install; \
 	webpack \
