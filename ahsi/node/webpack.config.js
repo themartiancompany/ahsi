@@ -40,7 +40,11 @@ module.exports = {
       "@std/path":
         _path.resolve(
           __dirname,
-          'node_modules/@std/path/mod.js')
+          'node_modules/@std/path/mod.js'),
+      "fs-worker":
+        _path.resolve(
+          __dirname,
+          'node_modules/crash-bash/crash/bash/fs-worker')
     }
   }
 };
