@@ -29,7 +29,7 @@ and the
 [Crash Bash](
   https://github.com/themartiancompany/crash-bash)
 libraries together to write a program
-which runs both in node js and
+which runs both in node.js and
 in a browser console.
 
 That's significant because it can be noted programs

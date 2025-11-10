@@ -53,7 +53,7 @@ NPM_FILES=\
   COPYING \
   package.json
 
-all: build-man build-npm
+all: build-webpack build-man build-npm
 
 check: shellcheck
 
@@ -99,14 +99,20 @@ build-npm:
 	      "version")"; \
 	cp \
 	  -r \
+	  "README.md" \
+	  "COPYING" \
+	  "AUTHORS.rst" \
 	  "$(_PROJECT)/node/$(_PROJECT)" \
-	  "$(_PROJECT)/node/README.md" \
-	  "$(_PROJECT)/node/COPYING" \
-	  "$(_PROJECT)/node/AUTHORS.rst" \
 	  "$(_PROJECT)/node/package.json" \
+	  "$(_PROJECT)/node/index.html" \
+	  "$(_PROJECT)/node/webpack.config.json" \
 	  "build"; \
 	cd \
 	  "build"; \
+	webpack \
+	  --mode \
+	    "production" \
+	  --stats-error-details
 	npm \
 	  pack; \
 	mv \
