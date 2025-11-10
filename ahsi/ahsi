@@ -54,9 +54,10 @@ _global_variables() {
   quiet=""
 }
 
-# rrrrr
-# $1: sette
-# $@: te
+# Hello world application
+# $1: target environment (browser or node)
+# $2: salutation message
+# $3: target planet
 _ahsi() {
   local \
     _target_environment="${1}" \
@@ -65,8 +66,10 @@ _ahsi() {
     _opts=() \
     _node_run_opts=() \
     _serve_cfg \
-    _cmd \
+    _cmd_path \
+    _cmd=() \
     _usr \
+    _oldpwd \
     _msg=()
   _usr="$(
     _get_usr)"
@@ -77,17 +80,29 @@ _ahsi() {
       -v
     )
   fi
-  _cmd="${_app_dir}/${app_name}"
+  _oldpwd="${PWD}"
   if [[ "${_target_environment}" == "node" ]]; then
+    _cmd_path="${_app_dir}/${app_name}"
     node-run \
       "${_node_run_opts[@]}" \
-      "${_cmd}"
+      "${_cmd_path}"
   elif [[ "${_target_environment}" == "browser" ]]; then
-    serve \
-      --config \
-        "${_serve_cfg}"
-      "${_app_dir}"
+    _cmd=(
+      cd
+        "${_app_dir}" "&&"
+      serve
+        --config
+          "${_serve_cfg}"
+	"${_app_dir}" "&&"
+      cd
+        "${_oldpwd}"
+    )
+    bash \
+      -c \
+        "${_cmd[*]}"
   fi
+  cd \
+    "${_oldpwd}"
 }
 
 # Set defaults and, if present, overrides

@@ -112,12 +112,17 @@ build-npm:
 	      "version")"; \
 	npm \
 	  install; \
-	cp \
-	  "node_modules/crash-js/crash-js/fs-worker" \
-	  "."; \
 	webpack \
 	  --mode \
 	    "production" \
+	  --config \
+	    "fs-worker.webpack.config.js" \
+	  --stats-error-details; \
+	webpack \
+	  --mode \
+	    "production" \
+	  --config \
+	    "webpack.config.js" \
 	  --stats-error-details; \
 	rm \
 	  -rf \

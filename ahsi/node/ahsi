@@ -59,13 +59,14 @@ function
 async function
   _ahsi() {
   let
+    _mkdir,
     _worker,
     _agent;
-  // _sync_agent =
-  //   _happy_opfs.startSyncAgent;
+  _mkdir =
+    _happy_opfs.mkdirSync;
   _worker =
     _fs_worker_new(
-      ".");
+      "fs-worker.js");
   console.log(
     _worker);
   _connect_opts = {
@@ -78,13 +79,14 @@ async function
     // max wait time at main thread per operation
     opTimeout: 3000,
   }
-  _agent =
-    await _agent_connect(
-	    _connect_opts);
-  console.log(
-    _agent);
+  _mkdir(
+    "test_dir");
+  await _agent_connect(
+          _connect_opts);
+  _mkdir(
+    "test_dir");
   _file_write(
-    "test",
+    "test_file",
     "content");
   // _sync_agent();
   _msg_info(

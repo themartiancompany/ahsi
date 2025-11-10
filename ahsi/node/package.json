@@ -20,7 +20,7 @@
     "package.json",
     "ahsi.js",
     "ahsi",
-    "fs-worker",
+    "fs-worker.js",
     "index.html",
     "serve.json",
     "webpack.config.js"
