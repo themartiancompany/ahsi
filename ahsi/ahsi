@@ -42,6 +42,8 @@ _requirements() {
   _check_cmd \
     'serve' \
     "nodejs-serve"
+  _check_cmd \
+    "openssl"
 }
 
 # shellcheck disable=SC2034
@@ -50,8 +52,49 @@ _global_variables() {
   target_environment=""
   target_message=""
   target_planet=""
+  cache_dir=""
   color=""
   quiet=""
+}
+
+_cert_new() {
+  local \
+    _key_file="${1}" \
+    _cert_file="${2}" \
+    _openssl_opts=()
+  _openssl_opts+=(
+    -x509
+    -newkey
+      "rsa:4096"
+    -keyout
+      "key.pem"
+    -out
+      "cert.pem"
+    -sha256
+    -days
+      3650
+    -nodes
+    -subj
+    "/C=XX/ST=StateName/L=CityName/O=CompanyName/OU=CompanySectionName/CN=CommonNameOrHostname"
+  )
+  openssl \
+    req \
+    "${_openssl_opts[@]}"
+}
+
+_cert_setup() {
+  local \
+    _key_file \
+    _cert_file
+  _key_file="${_cache_dir}/key.pem"
+  _cert_file="${_cache_dir}/cert.pem"
+  _cert_new \
+    "${_key_file}" \
+    "${_cert_file}"
+  _serve_opts+=(
+    --ssl-cert
+      "${_cert_file}"
+  )
 }
 
 # Hello world application
@@ -63,8 +106,10 @@ _ahsi() {
     _target_environment="${1}" \
     _target_message="${2}" \
     _target_planet="${3}" \
+    _cache_dir="${4}" \
     _opts=() \
     _node_run_opts=() \
+    _serve_opts=() \
     _serve_cfg \
     _cmd_path \
     _cmd=() \
@@ -75,6 +120,7 @@ _ahsi() {
     _get_usr)"
   _app_dir="${_usr}/lib/${app_name}"
   _serve_cfg="${_app_dir}/serve.json"
+  _cert_setup
   if [[ "${quiet}" == "n" ]]; then
     _node_run_opts+=(
       -v
@@ -87,12 +133,21 @@ _ahsi() {
       "${_node_run_opts[@]}" \
       "${_cmd_path}"
   elif [[ "${_target_environment}" == "browser" ]]; then
+    _serve_opts+=(
+      --config
+        "${_serve_cfg}"
+    )
+    _msg=(
+      "Running serve with options"
+      "'${_serve_opts[*]}'."
+    )
+    _msg_info \
+      "${_msg[*]}"
     _cmd=(
       cd
         "${_app_dir}" "&&"
       serve
-        --config
-          "${_serve_cfg}"
+        "${_serve_opts[@]}"
 	"${_app_dir}" "&&"
       cd
         "${_oldpwd}"
@@ -103,6 +158,26 @@ _ahsi() {
   fi
   cd \
     "${_oldpwd}"
+}
+
+_cache_dir_auto_detect() {
+  local \
+    _cache_dir
+  _cache_dir="${HOME}/.cache/${app_name}"
+  if [[ ! -v "override_cache_dir" ]]; then
+    if [[ ! -d "${_cache_dir}" ]]; then
+      mkdir \
+        -p \
+	"${_cache_dir}"
+      chmod \
+        700 \
+	"${_cache_dir}"
+    fi
+  fi
+  _set_override \
+    "cache" \
+    "dir" \
+    "${_cache_dir}"
 }
 
 # Set defaults and, if present, overrides
@@ -130,6 +205,7 @@ _set_overrides() {
   else
     target_environment="${override_target_environment}"
   fi
+  _cache_dir_auto_detect
 }
 
 # Shows configuration options.
@@ -139,6 +215,8 @@ _show_config() {
   _msg_info "             Target environment:   ${target_environment}"
   _msg_info "                 Target message:   ${target_message}"
   _msg_info "                  Target planet:   ${target_planet}"
+  _msg_info "          Application options:"
+  _msg_info "                Cache directory:   ${cache_dir}"
 }
 
 # Show help usage, with an exit status.
@@ -196,6 +274,8 @@ while \
     "${arg}" in
     p)
       override_target_environment="${OPTARG}" ;;
+    W)
+      override_cache_dir="${OPTARG}" ;;
     c)
       override_color="y" ;;
     v)
@@ -241,6 +321,7 @@ app_opts=(
   "${target_environment}"
   "${target_message}"
   "${target_planet}"
+  "${cache_dir}"
 )
 _ahsi \
   "${app_opts[@]}"
