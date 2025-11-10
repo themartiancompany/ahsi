@@ -35,7 +35,9 @@ in a browser console.
 That's significant because it can be noted programs
 written using either one of the Crash libraries
 are quite similar in their structure and
-function names.
+function names and because there is support
+for file system function both on browser
+and locally.
 
 Depending on how your Node.js installation
 is configured, you may need
