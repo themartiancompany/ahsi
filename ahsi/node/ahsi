@@ -79,7 +79,7 @@ async function
     opTimeout: 3000,
   }
   _agent =
-    await _sync_agent_connect(
+    await _agent_connect(
 	    _connect_opts);
   console.log(
     _agent);

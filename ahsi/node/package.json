@@ -16,6 +16,7 @@
     "ahsi",
     "fs-worker",
     "index.html",
+    "serve.json",
     "webpack.config.js"
   ],
   "keywords": [
@@ -38,6 +39,7 @@
     "url": "https://github.com/tallero"
   },
   "devDependencies": {
+    "serve": "^14.2.5",
     "webpack": "^5.102.1",
     "webpack-cli": "^6.0.1"
   },
