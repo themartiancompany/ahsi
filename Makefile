@@ -53,7 +53,7 @@ NPM_FILES=\
   COPYING \
   package.json
 
-all: build-webpack build-man build-npm
+all: build-man build-npm
 
 check: shellcheck
 
@@ -79,7 +79,7 @@ build-man:
 
 	mkdir \
 	  -p \
-	  "build"
+	  "build/man"
 	rst2man \
 	  "man/$(_PROJECT).1.rst" \
 	  "build/man/$(_PROJECT).1"
@@ -95,7 +95,7 @@ build-npm:
 	_version="$$( \
 	  npm \
 	    view \
-	      "$$(pwd)" \
+	      "$$(pwd)/build" \
 	      "version")"; \
 	cp \
 	  -r \
@@ -105,14 +105,14 @@ build-npm:
 	  "$(_PROJECT)/node/$(_PROJECT)" \
 	  "$(_PROJECT)/node/package.json" \
 	  "$(_PROJECT)/node/index.html" \
-	  "$(_PROJECT)/node/webpack.config.json" \
+	  "$(_PROJECT)/node/webpack.config.js" \
 	  "build"; \
 	cd \
 	  "build"; \
 	webpack \
 	  --mode \
 	    "production" \
-	  --stats-error-details
+	  --stats-error-details; \
 	npm \
 	  pack; \
 	mv \

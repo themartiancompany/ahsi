@@ -7,6 +7,16 @@
     "url": "https://patreon.com/tallero"
   },
   "man": "./man/ahsi.1",
+  "files": [
+    "AUTHORS.rst",
+    "COPYING",
+    "README.md",
+    "package.json",
+    "ahsi.js",
+    "ahsi",
+    "index.html",
+    "webpack.config.js"
+  ],
   "keywords": [
     "ur",
     "themartiancompany",
@@ -27,7 +37,7 @@
     "url": "https://github.com/tallero"
   },
   "dependencies": {
-    "crash-js": "^0.1.16",
+    "crash-js": "^0.1.17",
     "happy-opfs": "npm:@themartiancompany/happy-opfs@^1.8.8",
     "webpack": "^5.102.1",
     "webpack-cli": "^6.0.1"
