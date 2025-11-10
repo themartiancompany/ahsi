@@ -21,6 +21,7 @@
     "ahsi.js",
     "ahsi",
     "fs-worker.js",
+    "fs-worker.webpack.config.js",
     "index.html",
     "serve.json",
     "webpack.config.js"

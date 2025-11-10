@@ -101,6 +101,7 @@ build-npm:
 	  "$(_PROJECT)/node/package.json" \
 	  "$(_PROJECT)/node/index.html" \
 	  "$(_PROJECT)/node/serve.json" \
+	  "$(_PROJECT)/node/fs-worker.webpack.config.js" \
 	  "$(_PROJECT)/node/webpack.config.js" \
 	  "build"; \
 	cd \
