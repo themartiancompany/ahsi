@@ -64,24 +64,29 @@ _ahsi() {
     _target_planet="${3}" \
     _opts=() \
     _node_run_opts=() \
+    _serve_cfg \
     _cmd \
     _usr \
     _msg=()
   _usr="$(
     _get_usr)"
+  _app_dir="${_usr}/lib/${app_name}"
+  _serve_cfg="${_app_dir}/serve.json"
   if [[ "${quiet}" == "n" ]]; then
     _node_run_opts+=(
       -v
     )
   fi
-  _cmd="${_usr}/lib/ahsi/ahsi"
+  _cmd="${_app_dir}/${app_name}"
   if [[ "${_target_environment}" == "node" ]]; then
     node-run \
       "${_node_run_opts[@]}" \
       "${_cmd}"
   elif [[ "${_target_environment}" == "browser" ]]; then
     serve \
-      "${_usr}/lib/ahsi"
+      --config \
+        "${_serve_cfg}"
+      "${_app_dir}"
   fi
 }
 

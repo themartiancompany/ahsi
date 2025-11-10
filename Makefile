@@ -100,6 +100,7 @@ build-npm:
 	  "$(_PROJECT)/node/$(_PROJECT)" \
 	  "$(_PROJECT)/node/package.json" \
 	  "$(_PROJECT)/node/index.html" \
+	  "$(_PROJECT)/node/serve.json" \
 	  "$(_PROJECT)/node/webpack.config.js" \
 	  "build"; \
 	cd \
