@@ -30,7 +30,7 @@ _lib="${_bin}/../lib"
 _share="${_bin}/../share"
 _crash_bash="${_lib}/libcrash-bash/crash-bash"
 _sourced \
-  "${_crash_bash}" || \
+  "${_crash_bash}" 2>"/dev/null" || \
 source \
   "${_crash_bash}"
 
