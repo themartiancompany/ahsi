@@ -29,6 +29,8 @@ const
   _happy_opfs =
   require(
     'happy-opfs');
+_agent_connect =
+  _happy_opfs.connectSyncAgent;
 _cmdline_check =
   _libcrash._cmdline_check;
 _error_display =
@@ -54,10 +56,11 @@ function
     "ahsi";
 }
 
-function
+async function
   _ahsi() {
   let
-    _worker;
+    _worker,
+    _agent;
   // _sync_agent =
   //   _happy_opfs.startSyncAgent;
   _worker =
@@ -65,6 +68,21 @@ function
       ".");
   console.log(
     _worker);
+  _connect_opts = {
+    worker:
+      _worker,
+    // SharedArrayBuffer size between
+    // main thread and worker
+    bufferLength:
+      10 * 1024 * 1024,
+    // max wait time at main thread per operation
+    opTimeout: 3000,
+  }
+  _agent =
+    await _sync_agent_connect(
+	    _connect_opts);
+  console.log(
+    _agent);
   _file_write(
     "test",
     "content");
