@@ -64,6 +64,7 @@ async function
   _target_planet) {
   let
     _agent,
+    _dir_content,
     _content,
     _dir,
     _file,
@@ -95,7 +96,7 @@ async function
   _dir_content =
     _ls(
       "/");
-  _msg_info(
+  console.log(
     _dir_content);
   _msg =
     `Content of directory '${_dir}':`;
@@ -104,7 +105,7 @@ async function
   _dir_content =
     _ls(
       _dir);
-  _msg_info(
+  _console.log(
     _dir_content);
 }
 
