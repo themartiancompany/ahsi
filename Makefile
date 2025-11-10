@@ -115,6 +115,9 @@ build-npm:
 	  --mode \
 	    "production" \
 	  --stats-error-details; \
+	rm \
+	  -rf \
+	  "node_modules"; \
 	npm \
 	  pack; \
 	mv \
