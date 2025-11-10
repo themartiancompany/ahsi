@@ -77,7 +77,7 @@ _ahsi() {
   _cmd="${_usr}/lib/ahsi/ahsi"
   if [[ "${_target_environment}" == "node" ]]; then
     node-run \
-      "${_node_run[@]}" \
+      "${_node_run_opts[@]}" \
       "${_cmd}"
   elif [[ "${_target_environment}" == "browser" ]]; then
     serve \
@@ -102,14 +102,21 @@ _set_overrides() {
     "run" \
     "date" \
     "$(_get_date_human)"
-  _set_override
-    "target" \
-    "environment" \
-    "node"
-  _set_override
-    "target" \
-    "planet" \
-    "venus"
+  if [[ "${target_planet}" == "" ]]; then
+    target_planet="venus"
+  fi
+  if [[ ! -v "override_target_environment" ]]; then
+    target_environment="node"
+  fi
+}
+
+# Shows configuration options.
+_show_config() {
+  _msg_info "${app_name} configuration"
+  _msg_info "                       Run date:   ${run_date}"
+  _msg_info "             Target environment:   ${target_environment}"
+  _msg_info "                 Target message:   ${target_message}"
+  _msg_info "                  Target planet:   ${target_planet}"
 }
 
 # Show help usage, with an exit status.
@@ -166,7 +173,7 @@ while \
   case \
     "${arg}" in
     p)
-      ovveride_target_platform="${OPTARG}" ;;
+      override_target_environment="${OPTARG}" ;;
     c)
       override_color="y" ;;
     v)
@@ -205,11 +212,8 @@ target_message="${1}"
 if (( 1 < ${#} )); then
   target_planet="${2}"
 fi
-shift \
-  2
 _set_overrides
-_config_user_init \
-  "ahsi"
+_show_config
 app_opts=(
   "${target_environment}"
   "${target_message}"
