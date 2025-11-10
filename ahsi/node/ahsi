@@ -61,7 +61,8 @@ function
   // _sync_agent =
   //   _happy_opfs.startSyncAgent;
   _worker =
-    _fs_worker_new();
+    _fs_worker_new(
+      import.meta.url);
   console.log(
     _worker);
   _file_write(
