@@ -16,7 +16,22 @@ const
     filename:
       _file_name
 };
-
+const
+  _yargs_ignore = {
+    resourceRegExp:
+      /^yargs$/
+}
+const
+  _webpack =
+    require(
+     "webpack");
+const
+  _ignore_plugin =
+    _webpack.IgnorePlugin; 
+const
+  _yargs_ignore_plugin =
+    new _ignore_plugin(
+          _yargs_ignore);
 module.exports = {
   entry:
     './ahsi',
@@ -45,6 +60,11 @@ module.exports = {
           'node_modules/crash-bash/crash/bash/fs-worker'),
       "yargs":
         false
-    }
-  }
+    },
+  },
+  externals:
+    { yargs: 'yargs' },
+  plugins: [
+    _yargs_ignore_plugin
+  ]
 };

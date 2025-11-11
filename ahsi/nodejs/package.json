@@ -65,9 +65,7 @@
   },
   "dependencies": {
     "crash-js":
-      "^0.1.56",
-    "yargs":
-      "18.0.0"
+      "^0.1.56"
   },
   "type":
     "commonjs",
