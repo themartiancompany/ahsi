@@ -48,6 +48,11 @@ ahsi \
   "venus"
 ```
 
+When run in the browser, application
+input parameters, in this case
+`target_message` and `target_planet`
+are retrieved from the url.
+
 That's significant because it can be noted programs
 written using either one of the Crash libraries
 are quite similar in their structure and
