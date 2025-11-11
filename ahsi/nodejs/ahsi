@@ -25,6 +25,8 @@ const
   _libcrash =
   require(
     'crash-js');
+_argv_get =
+  _libcrash._argv_get;
 _cmdline_check =
   _libcrash._cmdline_check;
 _error_display =
@@ -121,6 +123,8 @@ function
     "Usage:",
     "  ahsi",
     "    <quiet>",
+    "    <message>",
+    "    <planet>",
     "",
     "Args:",
     "  <quiet>                          Can be 'y' or 'n'",
@@ -151,6 +155,10 @@ function
         target_message =
           _value;
       }
+      if ( _index == 4 ) {
+        target_planet =
+          _value;
+      }
       if ( _value == "-h" ||
            _value == "--help" ) {
         quiet =
@@ -171,15 +179,27 @@ app_opts = [
 _ahsi.apply(
   null,
   app_opts);
-// if ( _cmdline_check(
-//        "ahsi") == true ) {
-//   _global_variables();
-//   _cmdline_parse();
-//   app_opts = [
-//   ];
-//   _ahsi.apply(
-//     null,
-//     app_opts);
-// }
+_global_variables();
+if ( _cmdline_check(
+       "ahsi") == true ) {
+  _cmdline_parse();
+}
+else {
+  const
+    _argv =
+      _argv_url_get();
+  target_message =
+    _argv_url_get(
+      "target_message");
+  target_planet =
+    _argv_url_get(
+      "target_planet");
+}
 
-
+app_opts = [
+  target_message,
+  target_planet
+];
+_ahsi.apply(
+  null,
+  app_opts);
