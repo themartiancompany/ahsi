@@ -58,12 +58,16 @@ function
     "";
   target_planet =
     "";
+  runtime_environment =
+    "";
+  quiet =
+    "";
 }
 
 async function
   _ahsi(
-  _target_message,
-  _target_planet) {
+    _target_message,
+    _target_planet) {
   let
     _agent,
     _dir_content,
@@ -114,6 +118,27 @@ async function
 }
 
 function
+  _config_show() {
+  let
+    _chunks_files_paths,
+    _line,
+    _text;
+  _chunks_files_paths =
+    chunks_files_paths.join(
+    " ");
+  _text = [
+    `      Runtime environment: ${wallet_seed_path}`,
+    `           Target message: ${target_message}`,
+    `            Target planet: ${target_planet}`,
+  ];
+  for ( _line of _text ) {
+    _msg_info(
+      _line);
+  }
+}
+
+
+function
   _usage(
     _exit_code) {
   let
@@ -144,6 +169,8 @@ function
   _cmdline_parse() {
   quiet = 
     "y";
+  runtime_environment =
+    "node";
   process.argv.forEach(
     function (
       _value,
@@ -171,33 +198,44 @@ function
   });
 }
 
-_global_variables();
-
-quiet =
-  "n";
-
-app_opts = [
-];
-_ahsi.apply(
-  null,
-  app_opts);
-_global_variables();
-if ( _cmdline_check(
-       "ahsi") == true ) {
-  _cmdline_parse();
-}
-else {
-  const
-    _argv =
-      _argv_url_get();
+function
+  _url_parse() {
+  let
+    _argv;
+  runtime_environment =
+    "browser";
+  _argv =
+    _argv_url_get();
+  console.log(
+    _argv);
   target_message =
     _argv_url_get(
       "target_message");
   target_planet =
     _argv_url_get(
       "target_planet");
+  quiet =
+    _argv_url_get(
+      "quiet");
+  if ( quiet == "" ) {
+    quiet =
+      "n";
+  }
 }
 
+_global_variables();
+
+_global_variables();
+if ( _cmdline_check(
+       "ahsi") == true ) {
+  _cmdline_parse();
+}
+else {
+  _url_parse();
+  console.log(
+    target_message);
+}
+_config_show();
 app_opts = [
   target_message,
   target_planet
