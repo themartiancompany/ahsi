@@ -54,6 +54,8 @@
       "https://github.com/tallero"
   },
   "devDependencies": {
+    "eslint":
+      "^9.32.0",
     "serve":
       "^14.2.5",
     "webpack":
@@ -63,7 +65,7 @@
   },
   "dependencies": {
     "crash-js":
-      "^0.1.44"
+      "^0.1.49"
   },
   "type":
     "commonjs",
@@ -72,6 +74,8 @@
   "scripts": {
     "build":
       "cd ../.. && make build-npm && ahsi/nodejs",
+    "lint":
+      "npx eslint .",
     "publish-pnm":
       "npm run build && npm publish --access public",
     "start":
