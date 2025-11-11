@@ -42,6 +42,8 @@ module.exports = {
   },
   resolve: {
     fallback: {
+      "assert":
+        false,
       "fs":
         false,
       "happy-opfs":
@@ -58,6 +60,8 @@ module.exports = {
         _path.resolve(
           __dirname,
           'node_modules/crash-bash/crash/bash/fs-worker'),
+      "url":
+        false,
       "util":
         false,
       "yargs":
