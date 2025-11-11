@@ -72,7 +72,7 @@ install-scripts:
 	  "$(_PROJECT)/$(_PROJECT)" \
 	  "$(BIN_DIR)/$(_PROJECT)"
 	$(_INSTALL_EXE) \
-	  "$(_PROJECT)/node/$(_PROJECT)" \
+	  "$(_PROJECT)/nodejs/$(_PROJECT)" \
 	  "$(LIB_DIR)/$(_PROJECT)"
 
 build-man:
@@ -97,12 +97,12 @@ build-npm:
 	  "README.md" \
 	  "COPYING" \
 	  "AUTHORS.rst" \
-	  "$(_PROJECT)/node/$(_PROJECT)" \
-	  "$(_PROJECT)/node/package.json" \
-	  "$(_PROJECT)/node/index.html" \
-	  "$(_PROJECT)/node/serve.json" \
-	  "$(_PROJECT)/node/fs-worker.webpack.config.js" \
-	  "$(_PROJECT)/node/webpack.config.js" \
+	  "$(_PROJECT)/nodejs/$(_PROJECT)" \
+	  "$(_PROJECT)/nodejs/package.json" \
+	  "$(_PROJECT)/nodejs/index.html" \
+	  "$(_PROJECT)/nodejs/serve.json" \
+	  "$(_PROJECT)/nodejs/fs-worker.webpack.config.js" \
+	  "$(_PROJECT)/nodejs/webpack.config.js" \
 	  "build"; \
 	cd \
 	  "build"; \
@@ -144,7 +144,7 @@ install-npm:
 	_version="$$( \
 	  npm \
 	    view \
-	      "$$(pwd)/ahsi/node" \
+	      "$$(pwd)/ahsi/nodejs" \
 	      "version")"; \
 	npm \
 	  install \
