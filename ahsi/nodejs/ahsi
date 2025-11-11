@@ -120,14 +120,10 @@ async function
 function
   _config_show() {
   let
-    _chunks_files_paths,
     _line,
     _text;
-  _chunks_files_paths =
-    chunks_files_paths.join(
-    " ");
   _text = [
-    `      Runtime environment: ${wallet_seed_path}`,
+    `      Runtime environment: ${runtime_environment}`,
     `           Target message: ${target_message}`,
     `            Target planet: ${target_planet}`,
   ];
