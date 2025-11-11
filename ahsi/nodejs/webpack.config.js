@@ -58,6 +58,8 @@ module.exports = {
         _path.resolve(
           __dirname,
           'node_modules/crash-bash/crash/bash/fs-worker'),
+      "util":
+        false,
       "yargs":
         false
     },
