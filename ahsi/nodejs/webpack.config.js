@@ -42,7 +42,9 @@ module.exports = {
       "fs-worker":
         _path.resolve(
           __dirname,
-          'node_modules/crash-bash/crash/bash/fs-worker')
+          'node_modules/crash-bash/crash/bash/fs-worker'),
+      "yargs":
+        false
     }
   }
 };

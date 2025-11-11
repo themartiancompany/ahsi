@@ -49,6 +49,8 @@ _msg_info =
   _libcrash._msg_info;
 _msg_error =
   _libcrash._msg_error;
+_yargv_get =
+  _libcrash._yargv_get;
 
 function
   _global_variables() {
@@ -163,6 +165,12 @@ function
 
 function 
   _cmdline_parse() {
+  let
+    _argv;
+  _argv =
+    _yargv_get();
+  console.log(
+    _argv);
   quiet = 
     "y";
   runtime_environment =
@@ -204,10 +212,12 @@ function
     _argv_url_get();
   target_message =
     _argv_url_get(
-      "target_message")[0];
+      "target_message")[
+        0];
   target_planet =
     _argv_url_get(
-      "target_planet")[0];
+      "target_planet")[
+        0];
   quiet =
     _argv_url_get(
       "quiet");
