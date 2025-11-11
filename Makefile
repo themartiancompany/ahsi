@@ -166,7 +166,9 @@ publish-npm:
 	cd \
 	  "build"; \
 	npm \
-	  publish
+	  publish \
+	  --access \
+	    "public"
 
 install-doc:
 
