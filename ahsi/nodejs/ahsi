@@ -202,8 +202,6 @@ function
     "browser";
   _argv =
     _argv_url_get();
-  console.log(
-    _argv);
   target_message =
     _argv_url_get(
       "target_message");
@@ -213,10 +211,6 @@ function
   quiet =
     _argv_url_get(
       "quiet");
-  console.log(
-    quiet);
-  quiet =
-    "n";
   if ( quiet === "" ||
        typeof quiet === 'undefined' ) {
     quiet =
