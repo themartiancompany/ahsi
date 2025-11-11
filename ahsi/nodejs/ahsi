@@ -107,7 +107,7 @@ async function
   _dir_content =
     _ls(
       _dir);
-  _console.log(
+  console.log(
     _dir_content);
 }
 
