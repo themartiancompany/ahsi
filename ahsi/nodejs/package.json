@@ -2,7 +2,7 @@
   "name":
     "ahsi",
   "version":
-    "0.0.8",
+    "0.0.9",
   "description":
     "Crash Javascript library example program.",
   "funding": {
@@ -71,7 +71,7 @@
     "ahsi",
   "scripts": {
     "build":
-      "cd ../.. && make build-npm && ahsi/node",
+      "cd ../.. && make build-npm && ahsi/nodejs",
     "publish-pnm":
       "npm run build && npm publish --access public",
     "start":
