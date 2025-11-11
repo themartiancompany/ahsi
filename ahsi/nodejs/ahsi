@@ -88,6 +88,8 @@ async function
     _dir);
   _msg =
     `Writing content '${_content}' to file '${_file}':`;
+  _msg_info(
+    _msg);
   _file_write(
     _file,
     _content);
@@ -97,7 +99,7 @@ async function
     _msg);
   _dir_content =
     _ls(
-      "/");
+      "/").unwrap();
   console.log(
     _dir_content);
   _msg =
@@ -106,7 +108,7 @@ async function
     _msg);
   _dir_content =
     _ls(
-      _dir);
+      _dir).unwrap();
   console.log(
     _dir_content);
 }
