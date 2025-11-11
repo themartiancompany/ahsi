@@ -55,14 +55,18 @@ NPM_FILES=\
 
 all: build-man build-npm
 
-check: shellcheck
+check: lint
 
-shellcheck:
+lint:
 
 	shellcheck \
 	  -s \
 	    "bash" \
 	  $(SCRIPT_FILES)
+	cd \
+	  "$(_PROJECT)/nodejs"; \
+	eslint \
+	  "."
 
 install: install-scripts install-doc install-examples install-man
 
