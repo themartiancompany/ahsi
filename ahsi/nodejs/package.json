@@ -63,7 +63,7 @@
   },
   "dependencies": {
     "crash-js":
-      "^0.1.43"
+      "^0.1.44"
   },
   "type":
     "commonjs",
