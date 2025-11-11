@@ -204,15 +204,14 @@ function
     _argv_url_get();
   target_message =
     _argv_url_get(
-      "target_message");
+      "target_message")[0];
   target_planet =
     _argv_url_get(
-      "target_planet");
+      "target_planet")[0];
   quiet =
     _argv_url_get(
       "quiet");
-  if ( quiet === "" ||
-       typeof quiet === 'undefined' ) {
+  if ( quiet.length === 0 ) {
     quiet =
       "n";
   }
@@ -227,8 +226,6 @@ if ( _cmdline_check(
 }
 else {
   _url_parse();
-  console.log(
-    target_message);
 }
 _config_show();
 app_opts = [
