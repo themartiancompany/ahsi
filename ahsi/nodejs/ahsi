@@ -213,7 +213,12 @@ function
   quiet =
     _argv_url_get(
       "quiet");
-  if ( quiet == "" ) {
+  console.log(
+    quiet);
+  quiet =
+    "n";
+  if ( quiet === "" ||
+       typeof quiet === 'undefined' ) {
     quiet =
       "n";
   }
