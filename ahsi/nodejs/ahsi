@@ -56,6 +56,8 @@ function
   _global_variables() {
   app_name =
     "ahsi";
+  help_display =
+    "";
   target_message =
     "";
   target_planet =
@@ -64,30 +66,26 @@ function
     "";
   quiet =
     "";
+  verbose =
+    "";
 }
 
 async function
-  _ahsi(
-    _target_message,
-    _target_planet) {
+  _hello_world_opfs(
+    _content) {
   let
-    _agent,
-    _dir_content,
-    _content,
     _dir,
+    _dir_content,
     _file,
-    _msg,
-    _worker;
+    _msg;
+  await _fs_worker_start(
+      "fs-worker.js");
+  _msg =
+    "Crash Javascript OPFS Hello World"
   _dir =
     "/test_dir";
   _file =
     `${_dir}/test_file`;
-  _content =
-    `${_target_message} ${_target_planet}`;
-  if ( typeof window !== 'undefined' ) {
-    await _fs_worker_start(
-        "fs-worker.js");
-  }
   _msg =
     `Creating directory '${_dir}':`;
   _msg_info(
@@ -121,6 +119,24 @@ async function
     _dir_content);
 }
 
+async function
+  _ahsi(
+    _target_message,
+    _target_planet) {
+  let
+    _content;
+  _content =
+    `${_target_message} ${_target_planet}`;
+  if ( typeof window !== 'undefined' ) {
+    await _hello_world_opfs(
+      _content);
+  }
+  else {
+    console.log(
+      _content);
+  }
+}
+
 function
   _config_show() {
   let
@@ -149,7 +165,7 @@ function
     "",
     "Usage:",
     "  ahsi",
-    "    <quiet>",
+    "    [options]",
     "    <message>",
     "    <planet>",
     "",
@@ -166,42 +182,62 @@ function
 }
 
 function 
+  _overrides_set() {
+  if ( target_message == "" ) {
+    target_message =
+      "hello";
+  }
+  if ( target_planet == "" ) {
+    target_planet =
+      "venus";
+  }
+}
+
+function 
   _cmdline_parse() {
   let
-    _argv;
+    _argv,
+    _msg;
   _argv =
     _yargv_get();
-  console.log(
-    _argv);
   quiet = 
     "y";
   runtime_environment =
     "node";
-  process.argv.forEach(
-    function (
-      _value,
-      _index,
-      _array) {
-      if ( _index == 2 ) {
-        quiet =
-          _value;
-      }
-      if ( _index == 3 ) {
-        target_message =
-          _value;
-      }
-      if ( _index == 4 ) {
-        target_planet =
-          _value;
-      }
-      if ( _value == "-h" ||
-           _value == "--help" ) {
-        quiet =
-          "n";
-        _usage(
-          0);
-      }
-  });
+  if ( _argv[
+         "_"].length < 2 ) {
+    _msg =
+      "Two arguments required.";
+    _msg_error(
+      _msg,
+      0);
+    _usage(
+      1);
+  }
+  target_message =
+    _argv[
+      "_"][
+        0];
+  verbose =
+    _argv[
+      "verbose"] ||
+    _argv[
+      "v"];
+  help_display =
+    _argv[
+      "help"] ||
+    _argv[
+      "h"];
+  if ( verbose ) {
+    quiet =
+      "n";
+  }
+  if ( help_display ) {
+    quiet =
+      "n";
+    _usage(
+      0);
+  }
 }
 
 function
@@ -231,7 +267,6 @@ function
 
 _global_variables();
 
-_global_variables();
 if ( _cmdline_check(
        "ahsi") == true ) {
   _cmdline_parse();
@@ -239,6 +274,7 @@ if ( _cmdline_check(
 else {
   _url_parse();
 }
+_overrides_set();
 _config_show();
 app_opts = [
   target_message,
