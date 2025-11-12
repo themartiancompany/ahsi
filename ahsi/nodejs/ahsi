@@ -84,8 +84,10 @@ async function
     `${_dir}/test_file`;
   _content =
     `${_target_message} ${_target_planet}`;
-  await _fs_worker_start(
-      "fs-worker.js");
+  if ( typeof window !== 'undefined' ) {
+    await _fs_worker_start(
+        "fs-worker.js");
+  }
   _msg =
     `Creating directory '${_dir}':`;
   _msg_info(
