@@ -51,8 +51,6 @@ module.exports = {
   },
   resolve: {
     fallback: {
-      "assert":
-        false,
       "fs":
         false,
       "happy-opfs":
