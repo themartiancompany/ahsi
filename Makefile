@@ -124,9 +124,6 @@ build-npm:
 	      "version")"; \
 	npm \
 	  install; \
-	npm \
-	  install \
-	    --save-dev; \
 	webpack \
 	  --mode \
 	    "production" \

@@ -22,6 +22,11 @@ const
       /^yargs$/
 }
 const
+  _yargs_helpers_ignore = {
+    resourceRegExp:
+      /^yargs\/helpers$/
+}
+const
   _webpack =
     require(
      "webpack");
@@ -32,6 +37,10 @@ const
   _yargs_ignore_plugin =
     new _ignore_plugin(
           _yargs_ignore);
+const
+  _yargs_helpers_ignore_plugin =
+    new _ignore_plugin(
+          _yargs_helpers_ignore);
 module.exports = {
   entry:
     './ahsi',
@@ -65,12 +74,15 @@ module.exports = {
       "util":
         false,
       "yargs":
+        false,
+      "yargs/helpers":
         false
     },
   },
   externals:
     { yargs: 'yargs' },
   plugins: [
-    _yargs_ignore_plugin
+    _yargs_ignore_plugin,
+    _yargs_helpers_ignore_plugin
   ]
 };
